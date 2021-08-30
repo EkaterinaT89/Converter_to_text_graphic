@@ -3,8 +3,8 @@ package ru.netology.graphics.image;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 public class TextGraphicsConverterImpl implements TextGraphicsConverter {
 
@@ -14,7 +14,7 @@ public class TextGraphicsConverterImpl implements TextGraphicsConverter {
     private TextColorSchemaImpl schema;
 
     @Override
-    public String convert(String url) throws IOException, BadImageSizeException {
+    public String convert(String pathname) throws IOException, BadImageSizeException {
         double ratio = 0;
 
         int width = 200;
@@ -23,7 +23,8 @@ public class TextGraphicsConverterImpl implements TextGraphicsConverter {
         int newWidth = 0;
         int newHeight = 0;
 
-        BufferedImage img = ImageIO.read(new URL(url));
+
+        BufferedImage img = ImageIO.read(new File(pathname));
 
         if (img.getHeight() > img.getWidth()) {
             int widthForCount = img.getWidth() / width;
